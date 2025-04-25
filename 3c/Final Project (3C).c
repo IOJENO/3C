@@ -19,7 +19,7 @@ int getCurrencyIndex(char currency[]) {
 
 
 
-//converter
+
 float convert(float amount, int fromIndex, int toIndex) {
     float inUSD = amount / rates[fromIndex]; //convert to USD
     inUSD =inUSD * rates[toIndex]; // convert to target currency
@@ -48,12 +48,22 @@ int main() {
 
     int fromIndex = getCurrencyIndex(from);
     int toIndex = getCurrencyIndex(to);
+    
+    do{
+        if (fromIndex == -1) {
+            printf("Invalid source currency. Please enter a valid currency: ");
+            scanf("%s", from);
+            fromIndex = getCurrencyIndex(from);
+        }
 
-    if (fromIndex == -1 || toIndex == -1) {
-        printf("Invalid currency name entered.\n");
-        return 1;
-    }
-
+        
+        if (toIndex == -1) {
+            printf("Invalid target currency. Please enter a valid currency: ");
+            scanf("%s", to);
+            toIndex = getCurrencyIndex(to);
+        }
+    }while(fromIndex == -1 || toIndex == -1);   
+    
 
 
     result = convert(amount, fromIndex, toIndex);
