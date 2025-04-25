@@ -54,8 +54,7 @@ int main() {
         return 1;
     }
 
-
-
+    
     result = convert(amount, fromIndex, toIndex);
 
     printf("\n%.2f %s = %.2f %s\n", amount, from, result, to);
